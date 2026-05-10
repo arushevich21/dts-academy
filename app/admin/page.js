@@ -8,7 +8,7 @@ const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 )
 
-const ADMIN_USER_ID = 'ec901ca2-1a4f-44cc-832f-2cae4bd2133b'
+const ADMIN_USER_ID = 'eb1671b9-ea44-4681-8b7b-632344e16381'
 
 export default function Admin() {
   const router = useRouter()
