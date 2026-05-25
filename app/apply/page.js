@@ -16,8 +16,25 @@ export default function Apply() {
   const [error, setError] = useState('')
 
   useEffect(() => {
-    supabase.auth.getUser().then(({ data }) => {
-      if (!data.user) { router.push('/login'); return }
+    supabase.auth.getUser().then(async ({ data }) => {
+      if (!data.user) { router.replace('/login'); return }
+
+      const { data: member } = await supabase
+        .from('members')
+        .select('active')
+        .eq('user_id', data.user.id)
+        .maybeSingle()
+
+      if (member?.active) { router.replace('/dashboard'); return }
+
+      const { data: inquiry } = await supabase
+        .from('inquiries')
+        .select('id')
+        .eq('user_id', data.user.id)
+        .maybeSingle()
+
+      if (inquiry) { router.replace('/pending'); return }
+
       setUser(data.user)
     })
   }, [])

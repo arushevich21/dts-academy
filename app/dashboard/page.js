@@ -9,6 +9,8 @@ const supabase = createClient(
 )
 
 
+const ADMIN_USER_ID = 'eb1671b9-ea44-4681-8b7b-632344e16381'
+
 export default function Dashboard() {
   const router = useRouter()
   const [user, setUser] = useState(null)
@@ -251,6 +253,45 @@ export default function Dashboard() {
               </div>
             </button>
           </div>
+
+        {user.id === ADMIN_USER_ID && (
+          <button
+            onClick={() => router.push('/admin')}
+            style={{
+              width: '100%', marginTop: '2px',
+              background: 'var(--dark-2)',
+              border: '1px solid rgba(232,25,44,0.15)',
+              borderLeft: '3px solid var(--red)',
+              padding: '14px 20px', cursor: 'pointer',
+              display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+              opacity: showOptions ? 1 : 0,
+              transition: 'opacity 0.7s ease 0.2s, background 0.2s',
+            }}
+            onMouseEnter={e => e.currentTarget.style.background = 'var(--dark-3)'}
+            onMouseLeave={e => e.currentTarget.style.background = 'var(--dark-2)'}
+          >
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--red)" strokeWidth="1.5">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              </svg>
+              <div style={{ textAlign: 'left' }}>
+                <div style={{
+                  fontSize: '9px', fontWeight: 500, letterSpacing: '2.5px',
+                  textTransform: 'uppercase', color: 'var(--red)',
+                  marginBottom: '1px',
+                }}>Admin Access</div>
+                <div style={{
+                  fontFamily: 'var(--font-display)', fontSize: '15px',
+                  letterSpacing: '2px', color: 'var(--off-white)',
+                }}>Admin Panel</div>
+              </div>
+            </div>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" strokeWidth="1.5">
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="13,6 19,12 13,18" />
+            </svg>
+          </button>
+        )}
 
         <div style={{ textAlign: 'center', marginTop: '32px' }}>
           <button
