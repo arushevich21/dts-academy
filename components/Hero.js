@@ -1,6 +1,8 @@
 'use client'
+import { useRouter } from 'next/navigation'
 
 export default function Hero() {
+  const router = useRouter()
   return (
     <section style={{
       position: 'relative',
@@ -64,16 +66,18 @@ export default function Hero() {
         </p>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
-          <button style={{
-            background: 'var(--red)', color: 'var(--off-white)', border: 'none',
-            padding: '16px 36px', fontSize: '13px', fontWeight: 500,
-            letterSpacing: '1.5px', textTransform: 'uppercase', cursor: 'pointer',
-            fontFamily: 'var(--font-body)',
-          }}
+          <button
+            onClick={() => router.push('/login?next=/apply')}
+            style={{
+              background: 'var(--red)', color: 'var(--off-white)', border: 'none',
+              padding: '16px 36px', fontSize: '13px', fontWeight: 500,
+              letterSpacing: '1.5px', textTransform: 'uppercase', cursor: 'pointer',
+              fontFamily: 'var(--font-body)',
+            }}
             onMouseEnter={e => e.currentTarget.style.background = 'var(--red-dim)'}
             onMouseLeave={e => e.currentTarget.style.background = 'var(--red)'}
           >
-            Book a Session
+            Apply for Coaching
           </button>
           <button style={{
             background: 'none', color: 'var(--cream)',

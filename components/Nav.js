@@ -93,15 +93,17 @@ export default function Nav() {
             onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(200,194,181,0.3)'; e.currentTarget.style.color = 'var(--cream)' }}
           >Sign In</button>
         )}
-        <button style={{
-          background: 'var(--red)', color: 'var(--off-white)', border: 'none',
-          padding: '10px 24px', fontSize: '13px', fontWeight: 500,
-          letterSpacing: '1px', textTransform: 'uppercase',
-          cursor: 'pointer', fontFamily: 'var(--font-body)',
-        }}
+        <button
+          onClick={() => router.push(user ? '/dashboard' : '/login?next=/apply')}
+          style={{
+            background: 'var(--red)', color: 'var(--off-white)', border: 'none',
+            padding: '10px 24px', fontSize: '13px', fontWeight: 500,
+            letterSpacing: '1px', textTransform: 'uppercase',
+            cursor: 'pointer', fontFamily: 'var(--font-body)',
+          }}
           onMouseEnter={e => e.currentTarget.style.background = 'var(--red-dim)'}
           onMouseLeave={e => e.currentTarget.style.background = 'var(--red)'}
-        >Book a Session</button>
+        >Apply for Coaching</button>
       </div>
     </nav>
   )

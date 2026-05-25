@@ -1,5 +1,7 @@
 'use client'
+import { useEffect } from 'react'
 import { createClient } from '@supabase/supabase-js'
+import { useRouter } from 'next/navigation'
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL,
@@ -7,11 +9,24 @@ const supabase = createClient(
 )
 
 export default function Login() {
+  const router = useRouter()
+
+  // If already authenticated, skip the login screen entirely
+  useEffect(() => {
+    supabase.auth.getUser().then(({ data }) => {
+      if (data.user) router.replace('/dashboard')
+    })
+  }, [])
+
   const handleDiscordLogin = async () => {
+    const params = new URLSearchParams(window.location.search)
+    const next = params.get('next')
+    const SAFE_PATHS = ['/apply', '/dashboard', '/pending']
+    const redirectPath = SAFE_PATHS.includes(next) ? next : '/dashboard'
     await supabase.auth.signInWithOAuth({
       provider: 'discord',
       options: {
-        redirectTo: `${window.location.origin}/dashboard`,
+        redirectTo: `${window.location.origin}${redirectPath}`,
       },
     })
   }

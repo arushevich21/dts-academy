@@ -13,7 +13,6 @@ export default function Apply() {
   const [user, setUser] = useState(null)
   const [form, setForm] = useState({ improve: '', goals: '', experience: '', car_series: '' })
   const [submitting, setSubmitting] = useState(false)
-  const [submitted, setSubmitted] = useState(false)
   const [error, setError] = useState('')
 
   useEffect(() => {
@@ -54,7 +53,7 @@ export default function Apply() {
       if (!res.ok) {
         setError(json.error || 'Something went wrong. Please try again.')
       } else {
-        setSubmitted(true)
+        router.push('/pending')
       }
     } catch {
       setError('Something went wrong. Please try again.')
@@ -69,52 +68,6 @@ export default function Apply() {
       repeating-linear-gradient(90deg, transparent, transparent 119px, rgba(255,255,255,0.02) 119px, rgba(255,255,255,0.02) 120px),
       repeating-linear-gradient(0deg, transparent, transparent 119px, rgba(255,255,255,0.02) 119px, rgba(255,255,255,0.02) 120px)
     `,
-  }
-
-  if (submitted) {
-    return (
-      <div style={{
-        minHeight: '100vh', background: 'var(--dark)',
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-        padding: '48px', position: 'relative',
-      }}>
-        <div style={gridBg} />
-        <div style={{ position: 'relative', zIndex: 1, textAlign: 'center', maxWidth: '480px' }}>
-          <div style={{ color: '#4ade80', marginBottom: '24px' }}>
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-              <polyline points="20 6 9 17 4 12" />
-            </svg>
-          </div>
-          <h1 style={{
-            fontFamily: 'var(--font-display)', fontSize: 'clamp(40px, 6vw, 64px)',
-            letterSpacing: '3px', color: 'var(--off-white)',
-            lineHeight: 0.95, marginBottom: '16px',
-          }}>
-            APPLICATION<br /><span style={{ color: 'var(--red)' }}>RECEIVED</span>
-          </h1>
-          <p style={{
-            fontSize: '14px', fontWeight: 300, color: 'var(--text-muted)',
-            lineHeight: 1.7, marginBottom: '40px',
-          }}>
-            Your coaching inquiry has been sent. We&apos;ll be in touch via Discord shortly.
-          </p>
-          <button
-            onClick={() => router.push('/dashboard')}
-            style={{
-              background: 'none', border: '1px solid rgba(255,255,255,0.1)',
-              color: 'var(--cream)', padding: '12px 32px', cursor: 'pointer',
-              fontSize: '12px', fontWeight: 500, letterSpacing: '2px',
-              textTransform: 'uppercase', fontFamily: 'var(--font-body)',
-              transition: 'all 0.2s',
-            }}
-            onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--cream)'; e.currentTarget.style.color = 'var(--off-white)' }}
-            onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)'; e.currentTarget.style.color = 'var(--cream)' }}
-          >
-            Back to Dashboard
-          </button>
-        </div>
-      </div>
-    )
   }
 
   return (

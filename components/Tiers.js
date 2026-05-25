@@ -1,6 +1,8 @@
 'use client'
+import { useRouter } from 'next/navigation'
 
 export default function Tiers() {
+  const router = useRouter()
   const tiers = [
     {
       name: 'STUDENT',
@@ -90,6 +92,7 @@ export default function Tiers() {
             </ul>
 
             <button
+              onClick={() => router.push('/login?next=/apply')}
               style={{
                 marginTop: '32px', width: '100%', padding: '14px',
                 fontSize: '13px', fontWeight: 500, letterSpacing: '1.5px',
