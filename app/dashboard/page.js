@@ -86,13 +86,15 @@ export default function Dashboard() {
       ),
     },
     {
-      label: 'My Account',
-      desc: 'Manage your subscription and settings',
-      href: '/account',
+      label: 'Setup Library',
+      desc: 'Download coach-curated setup files for your car and track',
+      href: '/setups',
       icon: (
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-          <circle cx="12" cy="8" r="4" />
-          <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+          <polyline points="14 2 14 8 20 8" />
+          <path d="M12 18v-6" />
+          <path d="M9 15l3 3 3-3" />
         </svg>
       ),
     },
