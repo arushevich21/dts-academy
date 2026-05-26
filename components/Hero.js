@@ -1,98 +1,138 @@
 'use client'
+import { useEffect, useState } from 'react'
+import { createClient } from '@supabase/supabase-js'
 import { useRouter } from 'next/navigation'
+
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+)
 
 export default function Hero() {
   const router = useRouter()
+  const [user, setUser] = useState(null)
+  const [visible, setVisible] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768)
+    check()
+    window.addEventListener('resize', check, { passive: true })
+
+    supabase.auth.getUser().then(({ data }) => setUser(data.user))
+
+    const t = setTimeout(() => setVisible(true), 80)
+
+    return () => {
+      window.removeEventListener('resize', check)
+      clearTimeout(t)
+    }
+  }, [])
+
   return (
     <section style={{
       position: 'relative',
-      minHeight: '100vh',
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'flex-end',
-      padding: '0 48px 80px',
+      height: '100vh', minHeight: '600px',
       overflow: 'hidden',
+      display: 'flex', alignItems: 'center', justifyContent: 'center',
     }}>
+      {/* Poster — always shown as base; video covers it on desktop once loaded */}
       <div style={{
         position: 'absolute', inset: 0, zIndex: 0,
+        backgroundImage: 'url(/hero-poster.jpg)',
+        backgroundSize: 'cover', backgroundPosition: 'center',
+      }} />
+
+      {/* Video — desktop only */}
+      {!isMobile && (
+        <video
+          autoPlay loop muted playsInline
+          poster="/hero-poster.jpg"
+          style={{
+            position: 'absolute', inset: 0, zIndex: 1,
+            width: '100%', height: '100%', objectFit: 'cover',
+          }}
+        >
+          <source src="/hero.mp4" type="video/mp4" />
+        </video>
+      )}
+
+      {/* Subtle grid */}
+      <div style={{
+        position: 'absolute', inset: 0, zIndex: 2,
         background: `
-          repeating-linear-gradient(90deg, transparent, transparent 119px, rgba(255,255,255,0.025) 119px, rgba(255,255,255,0.025) 120px),
-          repeating-linear-gradient(0deg, transparent, transparent 119px, rgba(255,255,255,0.025) 119px, rgba(255,255,255,0.025) 120px),
-          radial-gradient(ellipse 80% 60% at 60% 40%, #1a0306 0%, var(--dark) 70%)
+          repeating-linear-gradient(90deg, transparent, transparent 119px, rgba(255,255,255,0.015) 119px, rgba(255,255,255,0.015) 120px),
+          repeating-linear-gradient(0deg, transparent, transparent 119px, rgba(255,255,255,0.015) 119px, rgba(255,255,255,0.015) 120px)
         `,
       }} />
 
+      {/* Dark gradient — text legibility */}
       <div style={{
-        position: 'absolute', right: 0, top: 0, bottom: 0, width: '45%',
-        background: 'linear-gradient(135deg, transparent 30%, rgba(232,25,44,0.06) 100%)',
-        zIndex: 0,
+        position: 'absolute', inset: 0, zIndex: 3,
+        background: 'linear-gradient(to bottom, rgba(26,3,6,0.6) 0%, rgba(13,12,11,0.65) 45%, rgba(13,12,11,0.92) 100%)',
       }} />
 
+      {/* Content */}
       <div style={{
-        position: 'absolute', left: 0, right: 0, bottom: 0,
-        height: '3px',
-        background: 'linear-gradient(90deg, var(--red) 0%, transparent 60%)',
-        zIndex: 1,
-      }} />
-
-      <div style={{ position: 'relative', zIndex: 2, maxWidth: '680px' }}>
+        position: 'relative', zIndex: 4,
+        textAlign: 'center',
+        padding: '0 48px',
+        maxWidth: '960px',
+        opacity: visible ? 1 : 0,
+        transform: visible ? 'translateY(0)' : 'translateY(28px)',
+        transition: 'opacity 1.1s ease, transform 1.1s ease',
+      }}>
         <div style={{
-          fontSize: '12px', fontWeight: 500, letterSpacing: '3px',
+          display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px',
+          fontSize: '11px', fontWeight: 500, letterSpacing: '4px',
           textTransform: 'uppercase', color: 'var(--red)',
-          marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '12px',
+          marginBottom: '32px',
         }}>
-          <span style={{ display: 'block', width: '32px', height: '1px', background: 'var(--red)' }} />
-          Sim Racing Coaching
+          <span style={{ width: '32px', height: '1px', background: 'var(--red)', display: 'block' }} />
+          Elite Sim Racing Coaching
+          <span style={{ width: '32px', height: '1px', background: 'var(--red)', display: 'block' }} />
         </div>
 
         <h1 style={{
           fontFamily: 'var(--font-display)',
-          fontSize: 'clamp(72px, 10vw, 120px)',
-          lineHeight: 0.92,
-          letterSpacing: '4px',
+          fontSize: 'clamp(72px, 13vw, 148px)',
+          letterSpacing: '6px', lineHeight: 0.88,
           color: 'var(--off-white)',
-          marginBottom: '28px',
+          marginBottom: '36px',
         }}>
-          Drive.<br />
-          Think.<br />
-          <span style={{ color: 'var(--red)' }}>Succeed.</span>
+          DRIVE. THINK.<br /><span style={{ color: 'var(--red)' }}>SUCCEED.</span>
         </h1>
 
         <p style={{
-          fontSize: '16px', fontWeight: 300, color: 'var(--cream)',
-          maxWidth: '480px', lineHeight: 1.7, marginBottom: '40px',
+          fontSize: '16px', fontWeight: 300,
+          color: 'var(--cream)', lineHeight: 1.75,
+          maxWidth: '440px', margin: '0 auto 52px',
+          letterSpacing: '0.3px',
         }}>
-          Elite coaching and data-driven training for sim racers who want to find the last tenth — and the one after that.
+          Personalized 1-on-1 coaching for sim racers serious about finding time on the limit.
         </p>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
-          <button
-            onClick={() => router.push('/login?next=/apply')}
-            style={{
-              background: 'var(--red)', color: 'var(--off-white)', border: 'none',
-              padding: '16px 36px', fontSize: '13px', fontWeight: 500,
-              letterSpacing: '1.5px', textTransform: 'uppercase', cursor: 'pointer',
-              fontFamily: 'var(--font-body)',
-            }}
-            onMouseEnter={e => e.currentTarget.style.background = 'var(--red-dim)'}
-            onMouseLeave={e => e.currentTarget.style.background = 'var(--red)'}
-          >
-            Apply for Coaching
-          </button>
-          <button style={{
-            background: 'none', color: 'var(--cream)',
-            border: '1px solid rgba(200,194,181,0.3)',
-            padding: '15px 36px', fontSize: '13px', fontWeight: 400,
-            letterSpacing: '1.5px', textTransform: 'uppercase', cursor: 'pointer',
-            fontFamily: 'var(--font-body)',
+        <button
+          onClick={() => router.push(user ? '/dashboard' : '/login?next=/apply')}
+          style={{
+            background: 'var(--red)', color: 'var(--off-white)', border: 'none',
+            padding: '18px 52px', fontSize: '13px', fontWeight: 500,
+            letterSpacing: '2.5px', textTransform: 'uppercase',
+            fontFamily: 'var(--font-body)', cursor: 'pointer',
+            transition: 'background 0.2s',
           }}
-            onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--cream)'; e.currentTarget.style.color = 'var(--off-white)' }}
-            onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(200,194,181,0.3)'; e.currentTarget.style.color = 'var(--cream)' }}
-          >
-            View Library
-          </button>
-        </div>
+          onMouseEnter={e => e.currentTarget.style.background = 'var(--red-dim)'}
+          onMouseLeave={e => e.currentTarget.style.background = 'var(--red)'}
+        >
+          Apply for Coaching
+        </button>
       </div>
+
+      {/* Red accent line */}
+      <div style={{
+        position: 'absolute', bottom: 0, left: 0, right: 0,
+        height: '2px', background: 'var(--red)', zIndex: 5,
+      }} />
     </section>
   )
 }

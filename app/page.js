@@ -1,10 +1,9 @@
 import Nav from '@/components/Nav'
 import Hero from '@/components/Hero'
-import Stats from '@/components/Stats'
-import Services from '@/components/Services'
-import Tiers from '@/components/Tiers'
-import Library from '@/components/Library'
-import ScheduleCTA from '@/components/ScheduleCTA'
+import About from '@/components/About'
+import Features from '@/components/Features'
+import Testimonials from '@/components/Testimonials'
+import FinalCTA from '@/components/FinalCTA'
 import Footer from '@/components/Footer'
 
 export default function Home() {
@@ -12,11 +11,10 @@ export default function Home() {
     <>
       <Nav />
       <Hero />
-      <Stats />
-      <Services />
-      <Tiers />
-      <Library />
-      <ScheduleCTA />
+      <About />
+      <Features />
+      <Testimonials />
+      <FinalCTA />
       <Footer />
     </>
   )
