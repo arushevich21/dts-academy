@@ -19,20 +19,15 @@ function useReveal() {
 
 const TESTIMONIALS = [
   {
-    quote: "Anton breaks down every corner in a way that actually makes sense. After two sessions I knocked two seconds off my lap at Spa — something I'd been stuck on for months.",
-    name: 'James H.',
-    context: 'GT3 driver, iRacing',
+    quote: "If you want to compete at the front, Anton will help get you there. Fast drivers don't necessarily make great coaches, but this guy really puts in the work on both sides. With multiple championships under his belt, Anton's proven expertise comes through in every session - and between them, too. Blending technical knowledge to spot subtle technique and setup issues with strategy and experience to put it all together, Anton meets you at your level to improve your pace, consistency, and racecraft. Working with Anton has helped me improve tremendously, and I've seen the growth of others he coaches first hand. Anyway, I love Anton as a coach, but also as a human being. I definitely recommend working with him.",
+    name: 'Adam K.',
+    context: 'ACC',
   },
   {
-    quote: "The telemetry feedback alone is worth it. Having someone look at your data and tell you exactly where you're losing time is a completely different experience from watching YouTube guides.",
-    name: 'Marcus T.',
-    context: 'Rookie class, ACC',
-  },
-  {
-    quote: "I wasn't sure if coaching was for me but Anton made it feel natural. No pressure, no ego — just clear, focused improvement every session.",
-    name: 'Sven K.',
-    context: 'Open-wheel, rFactor 2',
-  },
+    quote: "Because of Anton's coaching, my driving improved tremendously. I was able to learn things for myself and apply that on track. I went from midpack at best to fighting at the front. Thanks Anton!",
+    name: 'Jacob R.',
+    context: 'ACC',
+  }
 ]
 
 export default function Testimonials() {
@@ -46,7 +41,7 @@ export default function Testimonials() {
       setTimeout(() => {
         setIndex(i => (i + 1) % TESTIMONIALS.length)
         setFading(false)
-      }, 500)
+      }, 800)
     }, 6000)
     return () => clearInterval(id)
   }, [])
