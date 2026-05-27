@@ -97,7 +97,7 @@ export default function Apply() {
       <div style={{ position: 'relative', zIndex: 1, maxWidth: '680px', margin: '0 auto' }}>
 
         <button
-          onClick={() => router.push('/dashboard')}
+          onClick={() => router.push('/')}
           style={{
             background: 'none', border: 'none', cursor: 'pointer',
             color: 'var(--text-muted)', fontSize: '12px', letterSpacing: '2px',
@@ -112,7 +112,7 @@ export default function Apply() {
             <line x1="19" y1="12" x2="5" y2="12" />
             <polyline points="11,6 5,12 11,18" />
           </svg>
-          Back to dashboard
+          Back to home
         </button>
 
         <div style={{
