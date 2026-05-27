@@ -83,7 +83,7 @@ export default function FinalCTA() {
           marginBottom: '52px', letterSpacing: '0.3px',
           maxWidth: '480px', margin: '0 auto 52px',
         }}>
-          A short application — tell me where you're at and what you want to work on. I'll take it from there.
+          An interest form - tell me where you're at and what you want to work on. I'll take it from there.
         </p>
 
         <button
@@ -98,7 +98,7 @@ export default function FinalCTA() {
           onMouseEnter={e => e.currentTarget.style.background = 'var(--red-dim)'}
           onMouseLeave={e => e.currentTarget.style.background = 'var(--red)'}
         >
-          Apply for Coaching
+          Interested?
         </button>
       </div>
     </section>

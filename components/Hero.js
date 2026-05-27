@@ -124,7 +124,7 @@ export default function Hero() {
           onMouseEnter={e => e.currentTarget.style.background = 'var(--red-dim)'}
           onMouseLeave={e => e.currentTarget.style.background = 'var(--red)'}
         >
-          Apply for Coaching
+          Interested?
         </button>
       </div>
 

@@ -58,13 +58,13 @@ export default function About() {
               color: 'var(--cream)', lineHeight: 1.85,
               marginBottom: '28px',
             }}>
-              DTS Academy, led by Anton Rushevich, is dedicated to helping sim racers improve through personalized, accessible, and confidence-driven coaching. The focus is on steady growth, clear goals, and empowering each driver to find their own pace — without the pressure to become someone else.
+              DTS Academy, led by Anton Rushevich, is dedicated to helping sim racers improve through personalized, accessible, and confidence-driven coaching. The focus is on steady growth, clear goals, and empowering each driver to find their own pace - without the pressure to become someone else.
             </p>
             <p style={{
               fontSize: '16px', fontWeight: 300,
               color: 'var(--cream)', lineHeight: 1.85,
             }}>
-              Everything I teach, I taught myself first. Years of trial, error, and obsessing over the data shaped the way I coach today — and I've spent 5+ years teaching across multiple disciplines. I know what it takes to actually get faster, and how to explain it in a way that clicks.
+              Everything I teach, I taught myself first. Years of trial, error, and obsessing over the data shaped the way I coach today - and I've spent 5+ years teaching across multiple disciplines. I know what it takes to actually get faster, and how to explain it in a way that clicks.
             </p>
           </div>
         </div>

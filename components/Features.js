@@ -38,7 +38,7 @@ const FEATURES = [
   },
   {
     title: '1-on-1 Coaching',
-    desc: 'Live sessions built entirely around your weaknesses — real-time corrections, replay analysis, and setup work.',
+    desc: 'Live sessions built entirely around your weaknesses - real-time corrections, replay analysis, and setup work.',
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
         <rect x="3" y="4" width="18" height="18" rx="2" />
@@ -50,7 +50,7 @@ const FEATURES = [
   },
   {
     title: 'Setup Library',
-    desc: 'Coach-tuned setup files for every track and car class — download and load directly into your sim.',
+    desc: 'Coach-tuned setup files for every track and car class - download and load directly into your sim.',
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
