@@ -27,6 +27,11 @@ const TESTIMONIALS = [
     quote: "Because of Anton's coaching, my driving improved tremendously. I was able to learn things for myself and apply that on track. I went from midpack at best to fighting at the front. Thanks Anton!",
     name: 'Jacob R.',
     context: 'ACC',
+  },
+  {
+    quote: "I talked to Anton about a coaching session, and after the first one, I was hooked. I’ve never been coached, so this was a game changer. Overall, my experience has been excellent. The way he helps you in every corner and even goes into the smallest details is incredibly valuable. What I liked the most was his ability to adapt to my learning pace. He knows how to balance the amount of information without overwhelming you. I would highly recommend DTS Academy to anyone who wants to improve.",
+    name: 'Ian K.',
+    context: 'ACC',
   }
 ]
 
